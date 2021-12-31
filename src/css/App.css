@@ -1,0 +1,266 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap");
+body {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+  background: #fff;
+}
+h2 {
+  margin: 0;
+  font-weight: 700;
+}
+h3 {
+  color: #756c6a;
+  font-size: 22px;
+}
+.App {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  overflow-y: auto;
+  width: 100%;
+  height: 100%;
+}
+/* Top Menu */
+.topMenu {
+  display: flex;
+  position: fixed;
+  width: 100%;
+  height: 55px;
+  background-color: #2d2727;
+  padding: 10px;
+  box-shadow: 0 3px 10px 0px rgb(0 0 0 / 35%);
+  z-index: 10;
+}
+
+.contentLogo {
+  display: inline-flex;
+  position: relative;
+  justify-content: flex-start;
+  width: 30%;
+  height: 100%;
+}
+.contSearch {
+  display: inline-flex;
+  position: relative;
+  justify-content: flex-start;
+  align-items: center;
+  width: calc(40% - 20px);
+  height: 100%;
+}
+.inputGroup {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+.inputGroup > input {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 40px;
+  border-radius: 2px;
+  border: none;
+  padding: 1px 42px 1px 10px;
+}
+.inputGroup > span {
+  display: flex;
+  position: absolute;
+  right: 0;
+  width: 42px;
+  height: 42px;
+}
+/* contenedor principal */
+.container {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  flex-direction: row;
+}
+.contLeft {
+  display: flex;
+  flex-direction: column;
+  width: calc(80% - 60px);
+  height: 100%;
+  background: #f4f4f4;
+  padding: 30px 30px;
+  margin-top: 75px;
+}
+.topContent {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  width: 100%;
+  height: 40px;
+  margin-bottom: 30px;
+}
+.topContent > div:first-child {
+  display: flex;
+  position: relative;
+  justify-content: flex-start;
+  width: 50%;
+  height: 100%;
+  align-items: center;
+}
+.topContent > div:last-child {
+  display: flex;
+  position: relative;
+  justify-content: flex-end;
+  width: 50%;
+  height: 100%;
+}
+.topContent > div:last-child > select {
+  width: 40%;
+  border: none;
+}
+.listCards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+}
+.card {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  width: 47%;
+  height: 420px;
+  background: #fff;
+  margin-bottom: 30px;
+}
+.topContentCard {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 55%;
+}
+.topContentCard > span:first-child {
+  display: flex;
+  position: absolute;
+  width: 175px;
+  height: 175px;
+  border-radius: 100%;
+  overflow: hidden;
+  top: -15px;
+  left: -15px;
+  box-shadow: 2px 2px 5px 0 rgb(0 0 0 / 25%);
+}
+.topContentCard > span:last-child {
+  padding-left: 180px;
+  padding-right: 20px;
+  top: -17px;
+  position: absolute;
+}
+.topContentCard > span:last-child > h2 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+.topContentCard > span:last-child > p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 6;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #756c6a;
+  height: 126px;
+}
+span.btnViewMore {
+  background: #ec1e23;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 600;
+  display: flex;
+  width: 110px;
+  height: 50px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.3s ease;
+  font-size: 14px;
+}
+span.btnViewMore:hover {
+  transform: scale(1.05);
+  background: #cf1920;
+  transition: 0.3s ease;
+}
+.comicList {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: calc(100% - 40px);
+  height: 45%;
+  padding: 0 20px;
+}
+.contComicsTitles {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.contComicsTitles > span {
+  position: relative;
+  font-size: 14px;
+  width: 45%;
+  margin-bottom: 10px;
+  color: #756c6a;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-height: 1.5;
+}
+.contRight {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  background: #ebebeb;
+  width: 20%;
+  justify-content: center;
+  margin-top: 75px;
+}
+/* Loading */
+#loading {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+}
+.loading {
+  position: absolute;
+  left: 40%;
+  top: 50%;
+  margin: -60px 0 0 -60px;
+  background: #fff;
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  border: 10px solid rgb(238 23 31);
+}
+.loading:after {
+  content: "";
+  background: trasparent;
+  width: 140%;
+  height: 140%;
+  position: absolute;
+  border-radius: 100%;
+  top: -20%;
+  left: -20%;
+  opacity: 0.7;
+  box-shadow: rgb(238 23 31) -3px -3px 9px 0px;
+  animation: rotate 2s infinite linear;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
