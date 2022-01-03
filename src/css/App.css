@@ -9,13 +9,13 @@ body {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #F1F1F1;
+  background: #f1f1f1;
 }
 ::-webkit-scrollbar-thumb {
-  background: #EC1E23;
+  background: #ec1e23;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #555; 
+  background: #555;
 }
 h2 {
   margin: 0;
@@ -49,6 +49,7 @@ h3 {
   justify-content: flex-start;
   width: 30%;
   height: 100%;
+  align-items: center;
 }
 .contSearch {
   display: inline-flex;
@@ -255,12 +256,16 @@ span.btnViewMore:hover {
 }
 .contRight {
   display: flex;
-  position: relative;
+  position: fixed;
   flex-direction: column;
   background: #ebebeb;
   width: calc(20% - 40px);
   margin-top: 75px;
   padding: 30px 20px;
+  right: 0;
+  height: calc(100vh - 100px);
+  overflow: hidden;
+  overflow-y: auto;
 }
 
 /* Loading */
@@ -539,6 +544,184 @@ p.noFav {
   background: #322827;
 }
 .addComic.addedFav > span.btnFooter {
-  color: #ED1D24;
+  color: #ed1d24;
   width: 270px;
+}
+
+.burguer {
+  display: none;
+}
+.contentLogo > img {
+  width: auto;
+  height: 100%;
+}
+/* Responsive */
+@media only screen and (max-width: 1024px) {
+  .topContent > h2 {
+    font-size: 1.05em;
+  }
+  .modal {
+    width: 70%;
+    height: 70%;
+  }
+  p.noFav {
+    font-size: 0.8em;
+  }
+  .pagination span {
+    width: 25px;
+    height: 25px;
+    font-size: 0.8em;
+  }
+  .pagination > div {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .card {
+    width: 100%;
+  }
+  .contLeft {
+    width: calc(70% - 60px);
+  }
+  .contRight {
+    width: calc(30% - 40px);
+  }
+  .topContent > h2 {
+    font-size: 1.25em;
+  }
+  .modal {
+    width: 80%;
+    height: 50%;
+  }
+}
+@media only screen and (max-width: 540px) {
+  .contentLogo,
+  .contSearch {
+    width: 50%;
+  }
+  .topContent > div:first-child > h2 {
+    font-size: 1.2em;
+  }
+  .topContent > div:last-child > select {
+    width: 80%;
+  }
+  .topContent > h2 {
+    font-size: 0.7em;
+  }
+  p.noFav {
+    font-size: 0.6em;
+  }
+  span.btnFooter > span {
+    font-size: 0.7em;
+  }
+  span.btnFooter {
+    width: 200px;
+  }
+  span.btnFooter.buyFor {
+    width: 160px;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .contentLogo {
+    width: 40%;
+    align-items: center;
+  }
+  .contSearch {
+    width: 60%;
+  }
+  .contSearch > .inputGroup {
+    width: 75%;
+  }
+  .contSearch > .burguer {
+    display: flex;
+    position: relative;
+    justify-content: flex-end;
+    align-items: center;
+    width: 25%;
+  }
+  .contRight {
+    position: fixed;
+    right: -100%;
+    width: 50%;
+    box-shadow: -7px 0px 20px 0 rgb(0 0 0 / 50%);
+    height: calc(100vh - 135px);
+    transition: 0.4s ease;
+    overflow: hidden;
+    overflow-y: auto;
+  }
+  .contRight.active {
+    right: 0%;
+    transition: 0.4s ease;
+  }
+  .contLeft {
+    width: calc(100% - 60px);
+  }
+  .topContent > h2 {
+    font-size: 1.35em;
+  }
+  p.noFav {
+    font-size: 1em;
+  }
+  .modal {
+    width: 95%;
+    height: 60%;
+  }
+  .contDescViewMore > h2 {
+    font-size: 1em;
+  }
+  .contDescViewMore > p {
+    font-size: 0.75em;
+  }
+  .modalBody {
+    height: calc(100% - 150px);
+  }
+  .modalFooter {
+    height: 150px;
+    flex-direction: column;
+  }
+  .modalFooter > div {
+    width: 100%;
+  }
+  .topContentCard > span:last-child > h2 {
+    font-size: 1.2em;
+  }
+  .topContentCard > span:first-child {
+    width: 130px;
+    height: 130px;
+  }
+  .topContentCard > span:last-child {
+    padding-left: 130px;
+    padding-right: 20px;
+    top: -13px;
+    width: calc(100% - 150px);
+  }
+  .topContentCard,
+  .comicList {
+    height: 50%;
+  }
+  .card {
+    height: 300px;
+  }
+  span.btnViewMore {
+    display: none;
+  }
+}
+@media only screen and (max-width: 320px) {
+  .contentLogo > img {
+    height: 70%;
+  }
+  .topContentCard > span:first-child {
+    width: 100px;
+    height: 100px;
+  }
+  .topContentCard > span:last-child {
+    padding-left: 100px;
+    padding-right: 20px;
+    width: calc(100% - 120px);
+  }
+  .topContent > div:first-child > h2 {
+    font-size: 0.8em;
+  }
 }

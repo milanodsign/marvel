@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import characters from "../assets/images/characters.png";
 import Pagination from "./Pagination";
 
@@ -21,8 +21,7 @@ const CardsComponent = (props) => {
     document.body.style.overflowY = "hidden";
     props.setModalVisible(true);
     getComicData(resourceURI + "?" + props.credentials);
-    
-  }
+  };
   return (
     <>
       <div className="topContent">
@@ -47,9 +46,6 @@ const CardsComponent = (props) => {
                   {(i + 1) * 10} per page
                 </option>
               ))}
-
-            {/* <option value="15">15 per page</option>
-            <option value="20">20 per page</option> */}
           </select>
         </div>
       </div>

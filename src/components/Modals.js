@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import closeModalBtn from "../assets/images/btn-close.png";
 import addFavouritesD from "../assets/images/btn-favourites-default.png";
 import addFavouritesP from "../assets/images/btn-favourites-primary.png"

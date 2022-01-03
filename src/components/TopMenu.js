@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import logo from "../assets/images/Marvel_Logo.png";
 import search from "../assets/images/search.png";
+import burguer from "../assets/images/burguer.png";
+import closeBurguer from "../assets/images/closeBurguer.png";
 
 const TopMenu = (props) => {
   const [valueSearch, setValueSearch] = useState("");
@@ -15,6 +17,13 @@ const TopMenu = (props) => {
         props.setMarvelHeros(response.data.results);
       });
   };
+  const showFav = () => {
+    if (props.showFavourites === false) {
+      props.setShowFavourites(true)
+    } else {
+      props.setShowFavourites(false)
+    }
+  }
   return (
     <div className="topMenu">
       <div className="contentLogo">
@@ -34,6 +43,9 @@ const TopMenu = (props) => {
           <span>
             <img src={search} alt="" />
           </span>
+        </div>
+        <div className="burguer" onClick={() => showFav()}>
+          <img src={props.showFavourites === true ? closeBurguer : burguer} alt="" />
         </div>
       </div>
     </div>

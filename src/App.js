@@ -25,6 +25,8 @@ const App = () => {
   const [comicFavourites, setComicFavourites] = useState([]);
   const [addedFav, setAddedFav] = useState(false);
 
+  const [showFavourites, setShowFavourites] = useState(false);
+
   const Uri =
     "https://gateway.marvel.com:443/v1/public/characters?orderBy=name&limit=100&" +
     credentials;
@@ -65,7 +67,15 @@ const App = () => {
           setAddedFav,
         }}
       />
-      <TopMenu {...{ credentials, marvelHeros, setMarvelHeros }} />
+      <TopMenu
+        {...{
+          credentials,
+          marvelHeros,
+          setMarvelHeros,
+          showFavourites,
+          setShowFavourites,
+        }}
+      />
       <div className="container">
         <div className="contLeft">
           {!marvelHeros === true ? (
@@ -90,9 +100,14 @@ const App = () => {
             />
           )}
         </div>
-        <div className="contRight">
+        <div className={showFavourites === true ? "contRight active" : "contRight"}>
           <Favourites
-            {...{ comicFavourites, setComicFavourites, setAddedFav }}
+            {...{
+              comicFavourites,
+              setComicFavourites,
+              setAddedFav,
+              showFavourites,
+            }}
           />
         </div>
       </div>
