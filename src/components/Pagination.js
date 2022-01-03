@@ -19,14 +19,14 @@ const Pagination = (props) => {
   };
   return (
     <div>
-      <span className={props.currentPage != 1 && "active"} onClick={() => moveLeft()}>{arrowLeft}</span>
+      <span className={props.currentPage !== 1 ? "active" : ''} onClick={() => moveLeft()}>{arrowLeft}</span>
       {pageNumber &&
         pageNumber.map((item) => (
-          <span className={props.currentPage === item && "active"} key={item} onClick={() => props.setCurrentPage(item)}>
+          <span className={props.currentPage === item ? "active" : ''} key={item} onClick={() => props.setCurrentPage(item)}>
             {item}
           </span>
         ))}
-      <span className={props.currentPage != pageNumber.length && "active"} onClick={() => moveRight()}>{arrowRight}</span>
+      <span className={props.currentPage !== pageNumber.length ? "active" : ''} onClick={() => moveRight()}>{arrowRight}</span>
     </div>
   );
 };

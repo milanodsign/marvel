@@ -6,15 +6,14 @@ const TopMenu = (props) => {
   const [valueSearch, setValueSearch] = useState("");
   const fetchMarvelSearch = async (query) => {
     const Uri =
-          "https://gateway.marvel.com:443/v1/public/characters?orderBy=name&limit=100&ts=1&apikey=b02b74954698fd91cb1ff51056fe7fa9&hash=d01c42364e4db3b09879cb33abe1edf4"
-    const Uri2 = `https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=${query}&orderBy=name&limit=100&ts=1&apikey=b02b74954698fd91cb1ff51056fe7fa9&hash=d01c42364e4db3b09879cb33abe1edf4`
+          "https://gateway.marvel.com:443/v1/public/characters?orderBy=name&limit=100&"+props.credentials
+    const Uri2 = `https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=${query}&orderBy=name&limit=100&${props.credentials}`
 
     await fetch(query === "" ? Uri : Uri2)
       .then((response) => response.json())
       .then((response) => {
         props.setMarvelHeros(response.data.results);
       });
-      console.log(props.marvelHeros)
   };
   return (
     <div className="topMenu">

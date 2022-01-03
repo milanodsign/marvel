@@ -3,20 +3,31 @@ import "./css/App.css";
 import Loading from "./components/Loading";
 import TopMenu from "./components/TopMenu";
 import CardsComponent from "./components/CardsComponent";
-import Favorites from "./components/Favorites";
+import Favourites from "./components/Favourites";
 import Modals from "./components/Modals";
 
 const App = () => {
+  const credentials =
+    "ts=1&apikey=b02b74954698fd91cb1ff51056fe7fa9&hash=d01c42364e4db3b09879cb33abe1edf4";
   const [marvelHeros, setMarvelHeros] = useState();
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [personPerPage, setPersonPerPage] = useState(20);
 
   const [modalVisible, setModalVisible] = useState(false);
+
   const [viewMore, setViewMore] = useState(false);
   const [idPerson, setIdPerson] = useState();
+
+  const [uriComicData, setUriComicData] = useState();
+  const [comicRes, setComicRes] = useState();
+
+  const [comicFavourites, setComicFavourites] = useState([]);
+  const [addedFav, setAddedFav] = useState(false);
+
   const Uri =
-    "https://gateway.marvel.com:443/v1/public/characters?orderBy=name&limit=100&ts=1&apikey=b02b74954698fd91cb1ff51056fe7fa9&hash=d01c42364e4db3b09879cb33abe1edf4";
+    "https://gateway.marvel.com:443/v1/public/characters?orderBy=name&limit=100&" +
+    credentials;
   const fetchMarvel = async () => {
     await fetch(Uri)
       .then((response) => response.json())
@@ -36,7 +47,6 @@ const App = () => {
     marvelHeros && marvelHeros.slice(indexOfFirstPerson, indexOfLastPerson);
   return (
     <div className="App">
-      {/* {modalVisible === true && <Modals modalVisible={modalVisible} setModalVisible={setModalVisible} />} */}
       <Modals
         {...{
           marvelHeros,
@@ -45,10 +55,17 @@ const App = () => {
           viewMore,
           setViewMore,
           idPerson,
+          uriComicData,
+          setComicRes,
+          comicRes,
+          uriComicData,
+          comicFavourites,
+          setComicFavourites,
+          addedFav,
+          setAddedFav,
         }}
       />
-
-      <TopMenu {...{ marvelHeros, setMarvelHeros }} />
+      <TopMenu {...{ credentials, marvelHeros, setMarvelHeros }} />
       <div className="container">
         <div className="contLeft">
           {!marvelHeros === true ? (
@@ -56,6 +73,7 @@ const App = () => {
           ) : (
             <CardsComponent
               {...{
+                credentials,
                 marvelHeros,
                 currentPersons,
                 setModalVisible,
@@ -64,14 +82,18 @@ const App = () => {
                 personPerPage,
                 currentPage,
                 setCurrentPage,
-                setPersonPerPage
+                setPersonPerPage,
+                setUriComicData,
+                setComicRes,
+                comicFavourites,
               }}
             />
           )}
-          {/* <Loading /> */}
         </div>
         <div className="contRight">
-          <Favorites />
+          <Favourites
+            {...{ comicFavourites, setComicFavourites, setAddedFav }}
+          />
         </div>
       </div>
     </div>

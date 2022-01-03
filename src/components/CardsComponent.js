@@ -9,6 +9,20 @@ const CardsComponent = (props) => {
     props.setViewMore(true);
     props.setIdPerson(id);
   };
+  const getComicData = async (uri) => {
+    await fetch(uri)
+      .then((response) => response.json())
+      .then((response) => {
+        props.setComicRes(response.data.results);
+      });
+  };
+
+  const openModalFavourites = (resourceURI) => {
+    document.body.style.overflowY = "hidden";
+    props.setModalVisible(true);
+    getComicData(resourceURI + "?" + props.credentials);
+    
+  }
   return (
     <>
       <div className="topContent">
@@ -25,10 +39,17 @@ const CardsComponent = (props) => {
               }
             }}
           >
-            <option value="20">Sort by</option>
-            <option value="10">10 per page</option>
-            <option value="15">15 per page</option>
-            <option value="20">20 per page</option>
+            <option value="20">Amount per page</option>
+            {Array(5)
+              .fill()
+              .map((_, i) => (
+                <option key={i} value={(i + 1) * 10}>
+                  {(i + 1) * 10} per page
+                </option>
+              ))}
+
+            {/* <option value="15">15 per page</option>
+            <option value="20">20 per page</option> */}
           </select>
         </div>
       </div>
@@ -48,7 +69,12 @@ const CardsComponent = (props) => {
                 </span>
                 <span>
                   <h2>{item.name}</h2>
-                  <p>{item.description}</p>
+                  {item.description !== "" ? (
+                    <p>{item.description}</p>
+                  ) : (
+                    <p className="withoutDescription">Without description</p>
+                  )}
+
                   <span
                     className="btnViewMore"
                     onClick={() => openModalViewMore(item.id)}
@@ -61,9 +87,15 @@ const CardsComponent = (props) => {
                 <h3>Related comics</h3>
                 <div className="contComicsTitles">
                   {item.comics.items &&
-                    item.comics.items
-                      .slice(0, 4)
-                      .map((comic, ind) => <span key={ind}>{comic.name}</span>)}
+                    item.comics.items.slice(0, 4).map((comic, ind) => (
+                      <span
+                        className="comicRelated"
+                        key={ind}
+                        onClick={() => openModalFavourites(comic.resourceURI)}
+                      >
+                        {comic.name}
+                      </span>
+                    ))}
                 </div>
               </div>
             </div>

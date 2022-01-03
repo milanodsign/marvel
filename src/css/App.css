@@ -5,6 +5,18 @@ body {
   background: #fff;
   height: 100%;
 }
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F1F1F1;
+}
+::-webkit-scrollbar-thumb {
+  background: #EC1E23;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
 h2 {
   margin: 0;
   font-weight: 700;
@@ -92,6 +104,7 @@ h3 {
   width: 100%;
   height: 40px;
   margin-bottom: 30px;
+  align-items: center;
 }
 .topContent > div:first-child {
   display: flex;
@@ -134,7 +147,7 @@ h3 {
   position: relative;
   flex-direction: column;
   width: 47%;
-  height: 420px;
+  height: 400px;
   background: #fff;
   margin-bottom: 30px;
 }
@@ -142,7 +155,7 @@ h3 {
   display: flex;
   position: relative;
   width: 100%;
-  height: 55%;
+  height: 60%;
 }
 .topContentCard > span:first-child {
   display: flex;
@@ -160,6 +173,7 @@ h3 {
   padding-right: 20px;
   top: -17px;
   position: absolute;
+  width: calc(100% - 200px);
 }
 .topContentCard > span:last-child > h2 {
   overflow: hidden;
@@ -178,6 +192,14 @@ h3 {
   line-height: 1.5;
   color: #756c6a;
   height: 126px;
+}
+
+.topContentCard > span:last-child > p.withoutDescription {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
 }
 span.btnViewMore {
   background: #ec1e23;
@@ -203,8 +225,11 @@ span.btnViewMore:hover {
   flex-direction: column;
   position: relative;
   width: calc(100% - 40px);
-  height: 45%;
+  height: 40%;
   padding: 0 20px;
+}
+.comicList > h3 {
+  margin: 10px 0 20px;
 }
 .contComicsTitles {
   display: flex;
@@ -213,7 +238,7 @@ span.btnViewMore:hover {
 }
 .contComicsTitles > span {
   position: relative;
-  font-size: 14px;
+  font-size: 12px;
   width: 45%;
   margin-bottom: 10px;
   color: #756c6a;
@@ -223,16 +248,21 @@ span.btnViewMore:hover {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   line-height: 1.5;
+  cursor: pointer;
+}
+.contComicsTitles > span:hover {
+  color: #2b2828;
 }
 .contRight {
   display: flex;
   position: relative;
   flex-direction: column;
   background: #ebebeb;
-  width: 20%;
-  justify-content: center;
+  width: calc(20% - 40px);
   margin-top: 75px;
+  padding: 30px 20px;
 }
+
 /* Loading */
 #loading {
   width: 100px;
@@ -289,13 +319,13 @@ span.btnViewMore:hover {
   opacity: 0;
   width: 0;
   height: 0;
-  transition: width .3s .3s, height .3s .3s, opacity .3s;
+  transition: width 0.3s 0.3s, height 0.3s 0.3s, opacity 0.3s;
 }
 .fadeIn {
   opacity: 1;
   width: 100%;
   height: 100vh;
-  transition: width .3s, height .3s, opacity .3s .3s;
+  transition: width 0.3s, height 0.3s, opacity 0.3s 0.3s;
 }
 .modal {
   width: 65%;
@@ -330,8 +360,9 @@ span.btnFooter:hover {
   display: flex;
   position: relative;
   width: calc(100% - 30px);
-  height: calc(100% - 90px);
-  padding: 45px 15px;
+  height: calc(100% - 45px);
+  padding: 45px 15px 0;
+  overflow: hidden;
 }
 .contImgViewMore {
   display: flex;
@@ -340,6 +371,8 @@ span.btnFooter:hover {
   height: 100%;
   justify-content: center;
   align-items: flex-start;
+  overflow: hidden;
+  overflow-y: auto;
 }
 .contImgViewMore > span {
   display: flex;
@@ -444,14 +477,68 @@ p.noDescription {
   font-weight: 786;
   box-shadow: 2px 2px 3px 0 rgb(0 0 0 / 25%);
   cursor: pointer;
-  opacity: .5;
+  opacity: 0.5;
 }
 .pagination span.active {
   opacity: 1;
   cursor: default;
-  transition: .3s ease;
+  transition: 0.3s ease;
   transform: scale(1.05);
 }
 .pagination span:hover {
   transform: scale(1.05);
+}
+.viewMore.comicFav > div {
+  display: flex;
+}
+.contComicFav {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+}
+.contComicFav > span {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  margin-bottom: 30px;
+}
+.contComicFav > span > img {
+  width: 100%;
+  height: auto;
+}
+.contComicFav > span > p {
+  margin-bottom: 0;
+  font-weight: 600;
+  text-align: center;
+}
+p.noFav {
+  height: calc(100vh - 250px);
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.contComicFav > span > img.btnDel {
+  display: block;
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+.addComic.addedFav {
+  background: #322827;
+}
+.addComic.addedFav > span.btnFooter {
+  color: #ED1D24;
+  width: 270px;
 }

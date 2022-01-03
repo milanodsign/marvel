@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import closeModalBtn from "../assets/images/btn-close.png";
 import addFavouritesD from "../assets/images/btn-favourites-default.png";
+import addFavouritesP from "../assets/images/btn-favourites-primary.png"
 import addShoppingCart from "../assets/images/shopping-cart-primary.png";
 import btnCloseModal from "../assets/images/btnCloseModal.png";
 import ViewMore from "./ViewMore";
+import ComicFav from "./ComicFav";
 
 const Modals = (props) => {
   const closeModal = () => {
@@ -13,6 +15,26 @@ const Modals = (props) => {
       props.setViewMore(false);
     }
   };
+
+  const addToFav = (data) => {
+    props.setComicFavourites([...props.comicFavourites, data]);
+  };
+
+  if (props.comicFavourites.length !== 0) {
+    for (let i = 0; i < props.comicFavourites.length; i++) {
+      if (
+        props.comicRes &&
+        props.comicRes.find(
+          (element) => element.id === props.comicFavourites[i].id
+        )
+      ) {
+        props.setAddedFav(true);
+      } else {
+        props.setAddedFav(false);
+      }
+    }
+  }
+
   return (
     <div
       className={
@@ -28,13 +50,17 @@ const Modals = (props) => {
           alt="Close"
           onClick={() => closeModal()}
         />
-        <div
-          className="modalBody"
-        >
-          {props.viewMore === true && (
+        <div className="modalBody">
+          {props.viewMore === true ? (
             <ViewMore
               marvelHeros={props.marvelHeros}
               idPerson={props.idPerson}
+            />
+          ) : (
+            <ComicFav
+              uriComicData={props.uriComicData}
+              setComicRes={props.setComicRes}
+              comicRes={props.comicRes}
             />
           )}
         </div>
@@ -48,17 +74,39 @@ const Modals = (props) => {
             </div>
           ) : (
             <>
-              <div className="addComic">
-                <span className="btnFooter">
-                  <img src={addFavouritesD} alt="" />
-                  <span>ADD TO FAVOURITES</span>
-                </span>
+              <div className={props.addedFav === false ? "addComic" : "addComic addedFav"}>
+                {props.addedFav === false ? (
+                  <span
+                    className="btnFooter"
+                    onClick={() => addToFav(props.comicRes[0])}
+                  >
+                    <img src={addFavouritesD} alt="" />
+                    <span>ADD TO FAVOURITES</span>
+                  </span>
+                ) : (
+                  <span className="btnFooter">
+                    <img src={addFavouritesP} alt="" />
+                    <span>ADDED TO FAVOURITES</span>
+                  </span>
+                )}
               </div>
               <div className="buyComic">
-                <span className="btnFooter buyFor">
-                  <img src={addShoppingCart} alt="" />
-                  <span>BUY FOR $00,00</span>
-                </span>
+                {!props.comicRes ? (
+                  <span className="btnFooter buyFor">
+                    <img src={addShoppingCart} alt="" />
+                    <span>Without price</span>
+                  </span>
+                ) : !props.comicRes[0].prices[0] ? (
+                  <span className="btnFooter buyFor">
+                    <img src={addShoppingCart} alt="" />
+                    <span>BUY FOR ${props.comicRes[0].prices[1].price}</span>
+                  </span>
+                ) : (
+                  <span className="btnFooter buyFor">
+                    <img src={addShoppingCart} alt="" />
+                    <span>BUY FOR ${props.comicRes[0].prices[0].price}</span>
+                  </span>
+                )}
               </div>
             </>
           )}
