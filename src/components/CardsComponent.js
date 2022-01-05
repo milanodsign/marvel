@@ -1,5 +1,6 @@
 import React from "react";
 import characters from "../assets/images/characters.png";
+import linkArrow from "../assets/images/link-arrow.png";
 import Pagination from "./Pagination";
 
 const CardsComponent = (props) => {
@@ -22,6 +23,7 @@ const CardsComponent = (props) => {
     props.setModalVisible(true);
     getComicData(resourceURI + "?" + props.credentials);
   };
+
   return (
     <>
       <div className="topContent">

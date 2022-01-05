@@ -20,7 +20,7 @@ const App = () => {
   const [idPerson, setIdPerson] = useState();
 
   const [uriComicData, setUriComicData] = useState();
-  const [comicRes, setComicRes] = useState();
+  const [comicRes, setComicRes] = useState([]);
 
   const [comicFavourites, setComicFavourites] = useState([]);
   const [addedFav, setAddedFav] = useState(false);
@@ -94,6 +94,7 @@ const App = () => {
                 setCurrentPage,
                 setPersonPerPage,
                 setUriComicData,
+                comicRes,
                 setComicRes,
                 comicFavourites,
               }}

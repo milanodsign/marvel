@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import closeModalBtn from "../assets/images/btn-close.png";
 import addFavouritesD from "../assets/images/btn-favourites-default.png";
 import addFavouritesP from "../assets/images/btn-favourites-primary.png"
@@ -18,22 +18,23 @@ const Modals = (props) => {
 
   const addToFav = (data) => {
     props.setComicFavourites([...props.comicFavourites, data]);
+    localStorage.setItem('data', JSON.stringify([...props.comicFavourites, data]))
   };
 
   if (props.comicFavourites.length !== 0) {
+    props.setAddedFav(false);
     for (let i = 0; i < props.comicFavourites.length; i++) {
-      if (
-        props.comicRes &&
-        props.comicRes.find(
+      if (props.comicRes.find(
           (element) => element.id === props.comicFavourites[i].id
         )
       ) {
         props.setAddedFav(true);
-      } else {
-        props.setAddedFav(false);
       }
     }
   }
+
+  useEffect(() => {
+  }, []);
 
   return (
     <div
@@ -91,7 +92,7 @@ const Modals = (props) => {
                 )}
               </div>
               <div className="buyComic">
-                {!props.comicRes ? (
+                {!props.comicRes[0] ? (
                   <span className="btnFooter buyFor">
                     <img src={addShoppingCart} alt="" />
                     <span>Without price</span>
